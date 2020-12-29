@@ -74,7 +74,7 @@
         <AddOrUpdate v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></AddOrUpdate>
 
         <!--        &lt;!&ndash; 修改关联关系 &ndash;&gt;-->
-        <!--        <relation-update v-if="relationVisible" ref="relationUpdate" @refreshData="getDataList"></relation-update>-->
+        <relation-update v-if="relationVisible" ref="relationUpdate" @refreshData="getDataList"></relation-update>
       </div>
     </el-col>
   </el-row>
@@ -91,8 +91,10 @@
    */
   import Category from '../common/category'
   import AddOrUpdate from './attrgroup-add-or-update'
+    import RelationUpdate from "./attr-group-relation"
+
   export default {
-    components: {Category,AddOrUpdate},
+    components: {Category, AddOrUpdate,RelationUpdate},
     name: 'attrgroup',
     data () {
       return {
@@ -123,8 +125,8 @@
       },
       //感知树节点被点击
       treeNodeClick (data, node, component) {
-        console.log("父组件感知子组件",data,node,component)
-        console.log("刚才被点击菜的的ID",data.catId)
+        console.log('父组件感知子组件', data, node, component)
+        console.log('刚才被点击菜的的ID', data.catId)
         if (node.level == 3) {
           this.catId = data.catId
           this.getDataList() //重新查询
